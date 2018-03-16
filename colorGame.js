@@ -1,12 +1,4 @@
-var colors=[
-	"rgb(255, 0, 0)",
-	"rgb(255, 255, 0)",
-	"rgb(0, 255, 0)",
-	"rgb(0, 255, 255)",
-	"rgb(0, 0, 255)",
-	"rgb(255, 0, 255)"
-
-];
+var colors=generateRandomColors(6);
 
 var squares = document.querySelectorAll(".square");
 // stworzenie zmiennej do odgadnięcia
@@ -54,8 +46,35 @@ for(var i=0; i<squares.length; i++){
 }
 }
 
+// losowe wybieranie koloru docelowego z pośród 6 kwadratów (var colors)
 function pickColor(){
 
 	var random= Math.floor(Math.random()* colors.length);
 	return colors[random];
+}
+
+// kreator losowych kolorów
+function generateRandomColors(num){
+//utworzenie array
+var arr=[];
+// dodanie num colors do array
+for(var i=0; i<num; i++){
+
+	arr.push(randomColor());
+
+}
+//zwrócenie
+
+return arr;
+}
+
+function randomColor(){
+// wybrać red 0-255
+var r=Math.floor(Math.random()*256);
+// wybrać green 0-255
+var g=Math.floor(Math.random()*256);
+// wybrać blue 0-255
+var b=Math.floor(Math.random()*256);
+
+return "rgb(" + r + ", " + g + ", " + b + ")"
 }
