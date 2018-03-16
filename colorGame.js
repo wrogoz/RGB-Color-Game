@@ -9,45 +9,53 @@ var colors=[
 ];
 
 var squares = document.querySelectorAll(".square");
-
 // stworzenie zmiennej do odgadnięcia
-
-var pickedColor=colors[3];
-
+var pickedColor=pickColor();
 //zaznaczenie zmiennej(rgb) w tagu h1
-
 var colorDisplay=document.querySelector("#colorDisplay");
-
 // wyswietlenie wartosci zmiennej do odgadnięcia 
-
 colorDisplay.textContent=pickedColor;
-
-
-for(var i=0; i<squares.length; i++){
+// zmienna wyswietlająca rezultat klikniecia
+var messageDisplay=document.querySelector("#message");
 
 // nalozenie kolorow na kazdy z kwadratów
+for(var i=0; i<squares.length; i++){
 
 squares[i].style.backgroundColor=colors[i];
 
-// dodanie clickListener na kwadraty
 
+// dodanie clickListener na kwadraty
 squares[i].addEventListener("click", function(){
 
 // pobranie koloru z kliknietego kwadratu
-
 var clickedColor=this.style.backgroundColor;
 
-// porównanie tego koloru z docelowym 
 
+// porównanie tego koloru z docelowym 
 if(clickedColor===pickedColor){
-alert("yes");
+messageDisplay.textContent="Correct!";
+changeColors(clickedColor);
 }
 else{
-	alert("no");
+	this.style.backgroundColor= "#232323";
+	messageDisplay.textContent="Try Again";
 }
 
 
 
 });
 
+}
+
+function changeColors(color){
+
+for(var i=0; i<squares.length; i++){
+	squares[i].style.backgroundColor=color;
+}
+}
+
+function pickColor(){
+
+	var random= Math.floor(Math.random()* colors.length);
+	return colors[random];
 }
