@@ -1,8 +1,8 @@
 var colors=generateRandomColors(6);
 //reset button
-var button=document.querySelector("button");
+var reset=document.querySelector("#reset");
 
-button.addEventListener("click", function(){
+reset.addEventListener("click", function(){
 // wygenerować nowe kolory
 colors=generateRandomColors(6);
 // wybrać kolor docelowy
@@ -17,6 +17,7 @@ for(var i=0; i<squares.length; i++){
 squares[i].style.backgroundColor=colors[i];
 
 };
+h1.style.backgroundColor="#232323";
 });
 
 var squares = document.querySelectorAll(".square");
@@ -49,6 +50,8 @@ if(clickedColor===pickedColor){
 messageDisplay.textContent="Correct!";
 changeColors(clickedColor);
 h1.style.backgroundColor=pickedColor;
+button.textContent="Play again";
+
 }
 else{
 	this.style.backgroundColor= "#232323";
