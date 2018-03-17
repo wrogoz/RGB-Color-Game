@@ -1,10 +1,46 @@
-var colors=generateRandomColors(6);
+var numOfSquares=6;
+var colors=generateRandomColors(numOfSquares);
+
+//easy buttons
+
+var easy=document.querySelector("#easy");
+easy.addEventListener("click", function(){
+hard.classList.remove("selected");
+easy.classList.add("selected");
+numOfSquares=3;
+colors=generateRandomColors(numOfSquares);
+pickedColor=pickColor();
+colorDisplay.textContent=pickedColor;
+for (var i=0; i<squares.length;i++){
+	if(colors[i])
+		squares[i].style.backgroundColor=colors[i];
+	else
+		squares[i].style.display="none";
+}
+
+});
+// hard button
+
+var hard=document.querySelector("#hard");
+hard.addEventListener("click", function(){
+easy.classList.remove("selected");
+hard.classList.add("selected");
+numOfSquares=6;
+colors=generateRandomColors(numOfSquares);
+pickedColor=pickColor();
+colorDisplay.textContent=pickedColor;
+for(var i=0; i<squares.length;i++){
+squares[i].style.backgroundColor=colors[i];
+squares[i].style.display="block";
+}
+
+});
 //reset button
 var reset=document.querySelector("#reset");
 
 reset.addEventListener("click", function(){
 // wygenerować nowe kolory
-colors=generateRandomColors(6);
+colors=generateRandomColors(numOfSquares);
 // wybrać kolor docelowy
 pickedColor=pickColor();
 // wyswietlic dane koloru docelowego
@@ -18,6 +54,8 @@ squares[i].style.backgroundColor=colors[i];
 
 };
 h1.style.backgroundColor="#232323";
+
+reset.innerHTML="New colors";
 });
 
 var squares = document.querySelectorAll(".square");
@@ -50,7 +88,7 @@ if(clickedColor===pickedColor){
 messageDisplay.textContent="Correct!";
 changeColors(clickedColor);
 h1.style.backgroundColor=pickedColor;
-button.textContent="Play again";
+reset.innerHTML="Play again?";
 
 }
 else{
