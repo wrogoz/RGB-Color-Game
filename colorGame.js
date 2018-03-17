@@ -1,4 +1,23 @@
 var colors=generateRandomColors(6);
+//reset button
+var button=document.querySelector("button");
+
+button.addEventListener("click", function(){
+// wygenerować nowe kolory
+colors=generateRandomColors(6);
+// wybrać kolor docelowy
+pickedColor=pickColor();
+// wyswietlic dane koloru docelowego
+colorDisplay.textContent=pickedColor;
+
+// nadanie nowego koloru kwadratom
+
+for(var i=0; i<squares.length; i++){
+
+squares[i].style.backgroundColor=colors[i];
+
+};
+});
 
 var squares = document.querySelectorAll(".square");
 // stworzenie zmiennej do odgadnięcia
@@ -9,6 +28,8 @@ var colorDisplay=document.querySelector("#colorDisplay");
 colorDisplay.textContent=pickedColor;
 // zmienna wyswietlająca rezultat klikniecia
 var messageDisplay=document.querySelector("#message");
+
+var h1=document.querySelector("h1");
 
 // nalozenie kolorow na kazdy z kwadratów
 for(var i=0; i<squares.length; i++){
@@ -27,6 +48,7 @@ var clickedColor=this.style.backgroundColor;
 if(clickedColor===pickedColor){
 messageDisplay.textContent="Correct!";
 changeColors(clickedColor);
+h1.style.backgroundColor=pickedColor;
 }
 else{
 	this.style.backgroundColor= "#232323";
